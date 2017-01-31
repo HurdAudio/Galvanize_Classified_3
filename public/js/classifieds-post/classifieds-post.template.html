@@ -1,47 +1,50 @@
 <div class="page-header">
-  <h1>
-    {{$ctrl.post.description}}
-  </h1>
+    <img ng-src="{{$ctrl.post.item_image}}" height="350px" width="350px" class="media-object">
+  <div class="headline">
+    <h1>
+      {{$ctrl.post.description}}
+    </h1>
+
+  </div>
 </div>
 
 <div class="row">
-  <div class="col-md-8">
+  <fieldset class="form-style-1">
+    <div class="col-md-8">
 
-    <form name="form" novalidate ng-submit="$ctrl.updatePost()">
-      <div>
-        <label for="id">ID</label>
-        <input class="form-control" name="id" required ng-model="$ctrl.post.id">
-      </div>
-      <br>
-      <div>
-        <label for>Title</label>
-        <input class="form-control" name="title" required ng-model="$ctrl.post.title">
-      </div>
-      <br>
-      <div>
-        <label>Description</label>
-        <input class="form-control" name="description" required ng-model="$ctrl.post.description">
-      </div>
-      <br>
-      <div>
-        <label>Price</label>
-        <input class="form-control" name="price" required ng-model="$ctrl.post.price">
-      </div>
-      <br>
-      <div>
-        <label>Item Image</label>
-        <input class="form-control" name="item_image" required ng-model="$ctrl.post.item_image">
-      </div>
-      <div class="form-group">
-        <button type="submit">
-          Update Post
-        </button>
-      </div>
-    </form>
-    <br>
-    <button type="button" ng-click="$ctrl.deletePost()">
-      Delete Post
-    </button>
+      <form name="form" novalidate ng-submit="$ctrl.updatePost()">
 
-  </div>
+        <br>
+        <div>
+          <label for>Title</label>
+          <input class="form-style-1" type="text" name="title" required ng-model="$ctrl.post.title">
+        </div>
+        <br>
+        <div>
+          <label>Description</label>
+          <input class="form-style-1" type="text" name="description" required ng-model="$ctrl.post.description">
+        </div>
+        <br>
+        <div>
+          <label>Price</label>
+          <input class="form-style-1" type="number" name="price" required ng-model="$ctrl.post.price">
+        </div>
+        <br>
+        <div>
+          <label>Item Image</label>
+          <input class="form-style-1" type="url" name="item_image" required ng-model="$ctrl.post.item_image">
+        </div>
+        <div class="form-group">
+          <button id="updatePostButton" type="submit">
+            Update Post
+          </button>
+        </div>
+      </form>
+      <br>
+      <button id="deletePostButton" type="button" ng-click="$ctrl.deletePost()">
+        Delete Post
+      </button>
+
+    </div>
+  </fieldset>
 </div>

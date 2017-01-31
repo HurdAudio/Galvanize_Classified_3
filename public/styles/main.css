@@ -176,6 +176,38 @@ select{
     -webkit-box-shadow:none;
 }
 
+#updatePostButton {
+    background: #498CE8;
+    padding: 12px 15px 8px 15px;
+    margin-left: 5em;
+    margin-top: 2em;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+}
+#updatePostButton:hover {
+    background: #0E0C0E;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+#deletePostButton {
+    background: #498CE8;
+    padding: 12px 15px 8px 15px;
+    margin-left: 5em;
+    margin-top: 1em;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+}
+#deletePostButton:hover {
+    background: #0E0C0E;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
 .form-style-1 .required{
     color:red;
 }
