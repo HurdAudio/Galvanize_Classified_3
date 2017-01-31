@@ -1,0 +1,50 @@
+<h1>Create a new post for that thing you want to sell.</h1>
+<form ng-submit="$ctrl.createPost()" novalidate>
+  <div ng-class="{'form-group': true, 'has-error': form.title.$invalid && form.title.$touched }">
+    <label for="title"></label>
+    <input ng-model="$ctrl.post.title" type="text" name="title" required placeholder="Title of your post">
+  </div>
+  <div ng-class="{'form-group': true, 'has-error': form.description.$invalid && form.description.$touched }">
+    <label for="description"></label>
+    <input ng-model="$ctrl.post.description" type="text" name="description" required placeholder="Describe the thing">
+  </div>
+  <div ng-class="{'form-group': true, 'has-error': form.price.$invalid && form.price.$touched }">
+    <label for="price"></label>
+    <input ng-model="$ctrl.post.price" type="number" name="price" required placeholder="0.00">
+  </div>
+  <div ng-class="{'form-group': true, 'has-error': form.item_image.$invalid && form.item_image.$touched }">
+    <label for="item_image"></label>
+    <input ng-model="$ctrl.post.item_image" type="url" name="item_image" required placeholder="https://imgflip.com/s/meme/Cute-Cat.jpg">
+  </div>
+  <button id="submitButton" type="button" name="button" ng-click="$ctrl.createPost()" ng-disabled="form.$invalid">SUBMIT</button>
+</form>
+
+<form>
+  <fieldset>
+    <legend>Filter By:</legend>
+    <input name="filter" ng-model="$ctrl.filter" type="text">
+  </fieldset>
+  <br>
+  <fieldset>
+    <legend>Order By</legend>
+    <button ng-click="$ctrl.updateSort('-date')" type="button" name="button" value="-date" checked> Date Posted</button>
+    <button ng-click="$ctrl.updateSort('price')" type="button" name="button" value="price"> Price</button>
+  </fieldset>
+
+</form>
+
+
+<hr>
+<h1>Classified Listings</h1>
+<main id="classifiedsContainer" ng-repeat="posts in $ctrl.posts | filter : $ctrl.filter | orderBy : $ctrl.sortBy">
+  <div>
+    <h3>{{posts.title}}</h3>
+    <div class="media-left">
+      <img ng-src="{{posts.item_image}}" class="media-object">
+    </div>
+    <a ui-sref="post-description({id: posts.id})">{{posts.description}}</a>
+    <br>
+    <a ui-sref="post-price({id: posts.id})">${{posts.price}}</a>
+    <button class="editPostButton" type="button" name="button" ng-click="$ctrl.editPost(posts.id)">EDIT/DELETE</button>
+  </div>
+</main>
