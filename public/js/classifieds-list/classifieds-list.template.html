@@ -1,50 +1,58 @@
-<h1>Create a new post for that thing you want to sell.</h1>
+<br>
+<h1>Post your precious item TODAY:</h1>
 <form ng-submit="$ctrl.createPost()" novalidate>
-  <div ng-class="{'form-group': true, 'has-error': form.title.$invalid && form.title.$touched }">
-    <label for="title"></label>
-    <input ng-model="$ctrl.post.title" type="text" name="title" required placeholder="Title of your post">
-  </div>
-  <div ng-class="{'form-group': true, 'has-error': form.description.$invalid && form.description.$touched }">
-    <label for="description"></label>
-    <input ng-model="$ctrl.post.description" type="text" name="description" required placeholder="Describe the thing">
-  </div>
-  <div ng-class="{'form-group': true, 'has-error': form.price.$invalid && form.price.$touched }">
-    <label for="price"></label>
-    <input ng-model="$ctrl.post.price" type="number" name="price" required placeholder="0.00">
-  </div>
-  <div ng-class="{'form-group': true, 'has-error': form.item_image.$invalid && form.item_image.$touched }">
-    <label for="item_image"></label>
-    <input ng-model="$ctrl.post.item_image" type="url" name="item_image" required placeholder="https://imgflip.com/s/meme/Cute-Cat.jpg">
-  </div>
-  <button id="submitButton" type="button" name="button" ng-click="$ctrl.createPost()" ng-disabled="form.$invalid">SUBMIT</button>
+  <fieldset class="form-style-1">
+    <Legend>New Posting:</Legend>
+    <div class="form-style-1" ng-class="{'form-group': true, 'has-error': form.title.$invalid && form.title.$touched }">
+      <label for="title">POST Headline</label>
+      <input ng-model="$ctrl.post.title" type="text" name="title" required placeholder="e.g. Rare Comic Book, Mint Condition">
+    </div>
+    <div class="form-style-1" ng-class="{'form-group': true, 'has-error': form.description.$invalid && form.description.$touched }">
+      <label for="description">Description</label>
+      <input ng-model="$ctrl.post.description" type="text" name="description" required placeholder="e.g. Conan vs. Superman. Collector's edition...">
+    </div>
+    <div class="form-style-1" ng-class="{'form-group': true, 'has-error': form.price.$invalid && form.price.$touched }">
+      <label for="price">Asking Price</label>
+      <input ng-model="$ctrl.post.price" type="number" name="price" required placeholder="149.99">
+    </div>
+    <div class="form-style-1" ng-class="{'form-group': true, 'has-error': form.item_image.$invalid && form.item_image.$touched }">
+      <label for="item_image">Image URL</label>
+      <input ng-model="$ctrl.post.item_image" type="url" name="item_image" required placeholder="https://imgflip.com/s/meme/Cute-Cat.jpg">
+    </div>
+    <button class="form-style-1" id="submitButton" type="button" name="button" ng-click="$ctrl.createPost()" ng-disabled="form.$invalid">SUBMIT</button>
+  </fieldset>
 </form>
 
 <form>
-  <fieldset>
+  <fieldset class="form-style-1">
     <legend>Filter By:</legend>
-    <input name="filter" ng-model="$ctrl.filter" type="text">
+    <input  name="filter" ng-model="$ctrl.filter" type="text">
   </fieldset>
   <br>
-  <fieldset>
-    <legend>Order By</legend>
-    <button ng-click="$ctrl.updateSort('-date')" type="button" name="button" value="-date" checked> Date Posted</button>
-    <button ng-click="$ctrl.updateSort('price')" type="button" name="button" value="price"> Price</button>
+  <fieldset class="form-style-1">
+    <legend>Order By:</legend>
+    <button ng-click="$ctrl.updateSort('-date')" id="dateButton" type="button" name="button" value="-date" checked>DATE</button>
+    <button ng-click="$ctrl.updateSort('price')" id="priceButton" type="button" name="button" value="price">PRICE</button>
   </fieldset>
 
 </form>
 
 
 <hr>
-<h1>Classified Listings</h1>
+<h1>Classified Listings:</h1>
 <main id="classifiedsContainer" ng-repeat="posts in $ctrl.posts | filter : $ctrl.filter | orderBy : $ctrl.sortBy">
-  <div>
-    <h3>{{posts.title}}</h3>
-    <div class="media-left">
-      <img ng-src="{{posts.item_image}}" class="media-object">
+  <fieldset>
+    <div class="headline">
+      <h3>{{posts.title}}</h3>
+      <div class="media-left">
+        <img ng-src="{{posts.item_image}}" height="350px" width="350px" class="media-object">
+      </div>
+      <br>
+        <a ui-sref="post-description({id: posts.id})">{{posts.description}}</a>
+        <br>
+        <br>
+      <a ui-sref="post-price({id: posts.id})">${{posts.price}}</a>
+      <button class="editPostButton" type="button" name="button" ng-click="$ctrl.editPost(posts.id)">EDIT/DELETE</button>
     </div>
-    <a ui-sref="post-description({id: posts.id})">{{posts.description}}</a>
-    <br>
-    <a ui-sref="post-price({id: posts.id})">${{posts.price}}</a>
-    <button class="editPostButton" type="button" name="button" ng-click="$ctrl.editPost(posts.id)">EDIT/DELETE</button>
-  </div>
+  </fieldset>
 </main>
